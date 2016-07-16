@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    char s[201],a[4]={0},b[201]={0};
+    cin>>s;
+    int n=strlen(s);
+    int k,num=0;
+    for(int i=0;i<n;i++)
+    {
+        if(s[i]=='e')
+        {
+           k=i+1;
+           break;
+        }
+    }//cout<<k<<endl;
+    int j=0;
+    for(int i=k;i<n;i++)
+    {
+        a[j]=s[i];
+        j++;
+    }//cout<<a<<" ";
+    j=0;
+    for(int i=0;i<k-1;i++)
+    {
+        b[j]=s[i];
+        j++;
+    }
+    for(int i=j;i<201;i++)
+    b[i]='0';
+    //cout<<b<<" ";
+    //cout<<a;
+    int cnt=0;
+    int c=stod(a);
+    j=0;
+    while(cnt!=c)
+    {
+        if(b[j]=='.')
+        {
+            swap(b[j],b[j+1]);
+            j++;
+            cnt++;
+        }
+        else
+        j++;
+    }
+    //cout<<b<<endl;
+    string san(b);
+    //cout<<san<<endl;
+    int n1=san.size();
+    j=201-1;
+    int cnt1=0,f=0;
+    while(j>=0)
+    {
+        
+        if(san[j]=='0' )
+        {
+            cnt1++;
+            f=j;
+        }
+        else
+        break;
+        j--;
+    }//cout<<f<<" "<<cnt1;
+    for(int i=0;i<201;i++)
+    {
+    	san.erase(f,f+cnt1);
+    }
+    int n2=san.size();
+    //cout<<san<<endl;
+    if(san[n2-1]=='.')
+    san.erase(san.end()-1);
+    cout<<san;
+}
